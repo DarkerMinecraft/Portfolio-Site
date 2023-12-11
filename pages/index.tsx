@@ -5,7 +5,7 @@ import WorkExperience from "@/components/WorkExperience";
 import Skills from "@/components/Skills";
 import Projects from "@/components/Projects";
 import ContactMe from "@/components/ContactMe";
-import { GetStaticProps } from "next";
+import { GetServerSideProps } from "next";
 import Link from "next/link";
 import { PageInfo, Experience, Skill, Project, Social } from "@/typings";
 import { fetchPageInfo } from "@/utilites/fetchPageInfo";
@@ -19,12 +19,12 @@ import Head from "next/head";
 type Props = {
   pageInfo: PageInfo;
   experiences: Experience[];
+  socials: Social[];
   skills: Skill[];
   projects: Project[];
-  socials: Social[];
 };
 
-const Home = ({ pageInfo, experiences, projects, skills, socials }: Props) => {
+const Home = ({ pageInfo, socials, experiences, skills, projects }: Props) => {
   return (
     <div
       className="bg-[rgb(36,36,36)] text-center text-white h-screen snap-y snap-mandatory overflow-y-scroll overflow-x-hidden z-0
@@ -76,7 +76,7 @@ const Home = ({ pageInfo, experiences, projects, skills, socials }: Props) => {
 
 export default Home;
 
-export const getStaticProps: GetStaticProps<Props> = async () => {
+export const getServerSideProps: GetServerSideProps<Props> = async () => {
   const pageInfo: PageInfo = await fetchPageInfo();
   const experiences: Experience[] = await fetchExperiences();
   const skills: Skill[] = await fetchSkills();
@@ -91,7 +91,5 @@ export const getStaticProps: GetStaticProps<Props> = async () => {
       projects,
       socials,
     },
-
-    revalidate: 10,
   };
 };
