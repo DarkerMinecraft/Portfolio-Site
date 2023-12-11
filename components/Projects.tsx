@@ -26,6 +26,7 @@ function Projects({ projects }: Props) {
               transition={{ duration: 1.2 }}
               viewport={{ once: true }}
               src={urlFor(project.image).url()}
+              className="w-[100px] h-[100px] md:w-[150px] md:h-[150px] "
             />
             <div className="space-y-10 px-0 md:px-10 max-w-6xl">
               <h4 className="text-4xl font-semibold text-center">
