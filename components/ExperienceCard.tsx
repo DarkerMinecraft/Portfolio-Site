@@ -1,9 +1,7 @@
 import React from "react";
 import { motion } from "framer-motion";
 import { Experience } from "@/typings";
-import { getURL } from "next/dist/shared/lib/utils";
 import { urlFor } from "@/sanity";
-import experience from "@/sanity/schemas/experience";
 
 type Props = {
   experience: Experience;
@@ -37,7 +35,6 @@ export default function ExperienceCard({ experience }: Props) {
               className="w-10 h-10 rounded-full"
             />
           ))}
-          ;
         </div>
         <p className="uppercase py-5 text-gray-300">
           {new Date(experience?.dateStarted).toDateString()} -{" "}
